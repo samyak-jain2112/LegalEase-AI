@@ -1,0 +1,36 @@
+
+LANGUAGE_OPTIONS = {
+    "Auto-Detect": "auto",
+    "English": "eng",
+    "Hindi": "hin",
+    "Bengali": "ben",
+    "Gujarati": "guj",
+    "Kannada": "kan",
+    "Malayalam": "mal",
+    "Oriya": "ori",
+    "Punjabi (Gurmukhi)": "pan",
+    "Tamil": "tam",
+    "Telugu": "tel",
+    "Urdu": "urd",
+    "French": "fra",
+    "Spanish": "spa",
+    "German": "deu",
+    "Portuguese": "por",
+}
+
+TARGET_LANGUAGES = {
+    "English": "English",
+    "Hindi": "Hindi",
+    "Spanish": "Spanish", 
+    "French": "French",
+    "German": "German",
+    "Portuguese": "Portuguese",
+    "Italian": "Italian",
+    "Japanese": "Japanese",
+    "Chinese (Simplified)": "Chinese (Simplified)",
+    "Marathi": "Marathi",
+    "Bengali": "Bengali",
+    "Tamil": "Tamil",
+    "Telugu": "Telugu",
+    "Punjabi": "Punjabi",
+}
