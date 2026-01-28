@@ -9,9 +9,6 @@ from utils import LANGUAGE_OPTIONS
 import pdfplumber
 import os
 
-# ADDED: detect Streamlit Cloud environment
-IS_CLOUD = os.getenv("STREAMLIT_SERVER_RUNNING") == "true"
-
 TESSERACT_PATH = os.getenv("TESSERACT_CMD")
 
 if TESSERACT_PATH:
@@ -53,24 +50,21 @@ def extract_text_from_document(uploaded_file, language='auto'):
         return "", "en"
 
     file_bytes = uploaded_file.getvalue()
+    images = []
 
-    # CHANGED: cloud-safe PDF handling (no OCR on Streamlit Cloud)
     if uploaded_file.name.lower().endswith(".pdf"):
-        if IS_CLOUD:
+        try:
+            images = convert_from_bytes(file_bytes)
+        except Exception:
+            # CHANGED: fallback to non-OCR PDF parsing when Poppler is unavailable
             text = extract_text_from_pdf_no_ocr(file_bytes)
             if not text:
                 st.warning(
                     "This PDF appears to be scanned. "
-                    "OCR is disabled on Streamlit Cloud. "
-                    "Please run the app locally for OCR support."
+                    "OCR is not supported in the deployed environment. "
+                    "Please run the app locally for OCR."
                 )
             return text, "en"
-        else:
-            try:
-                images = convert_from_bytes(file_bytes)
-            except Exception as img_err:
-                st.error(f"File could not be read or processed. Error: {img_err}")
-                return "", "en"
     else:
         images = [Image.open(io.BytesIO(file_bytes))]
 
