@@ -56,7 +56,7 @@ def extract_text_from_document(uploaded_file, language='auto'):
         try:
             images = convert_from_bytes(file_bytes)
         except Exception:
-            # CHANGED: fallback to non-OCR PDF parsing when Poppler is unavailable
+            # fallback to non-OCR PDF parsing when Poppler is unavailable
             text = extract_text_from_pdf_no_ocr(file_bytes)
             if not text:
                 st.warning(
