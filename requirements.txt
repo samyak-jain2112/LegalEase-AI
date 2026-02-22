@@ -6,3 +6,5 @@ groq
 python-dotenv
 langdetect
 pdfplumber
+chromadb
+sentence-transformers
